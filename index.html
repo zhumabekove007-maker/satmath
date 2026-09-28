@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digital SAT Math: Traps and Time-Savers Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#eef2f7;--surface:#ffffff;--ink:#17222e;--muted:#566474;--navy:#0b2a4a;--navy-ink:#ffffff;--blue:#0a5fb4;--blue-soft:#e4effb;--line:#cfd8e3;--good:#17703f;--good-soft:#e5f5ec;--warn:#8a5a00;--focus:#0a5fb4; --serif:'Noto Serif',Georgia,'Times New Roman',serif;--sans:'Noto Sans','Segoe UI',Helvetica,Arial,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1520;--surface:#142130;--ink:#e6ecf3;--muted:#9fb0c1;--navy:#07182a;--navy-ink:#ffffff;--blue:#6db2f5;--blue-soft:#183553;--line:#2a3b4d;--good:#5fd39a;--good-soft:#123326;--warn:#f0c060;--focus:#6db2f5;}}
+:root[data-theme="dark"]{--bg:#0c1520;--surface:#142130;--ink:#e6ecf3;--muted:#9fb0c1;--navy:#07182a;--navy-ink:#ffffff;--blue:#6db2f5;--blue-soft:#183553;--line:#2a3b4d;--good:#5fd39a;--good-soft:#123326;--warn:#f0c060;--focus:#6db2f5;}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+.top{background:var(--navy);color:var(--navy-ink)}
+.top-in{max-width:960px;margin:0 auto;padding:22px 20px 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.top h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,4vw,2.3rem);margin:0;line-height:1.15}
+.top p{margin:6px 0 0;color:#b8cbe0;font-size:.95rem}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.meta span{border:1px solid #3b5a7c;border-radius:4px;padding:3px 10px;font-size:.85rem;color:#dbe7f3}
+#toggle{font:inherit;font-size:.9rem;background:transparent;color:#fff;border:1.5px solid #fff;border-radius:4px;padding:8px 14px;cursor:pointer}
+#toggle:hover{background:#fff;color:var(--navy)}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:2px solid var(--navy)}
+nav.tabs div{max-width:960px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;padding:0 12px}
+nav.tabs a{padding:13px 14px;color:var(--ink);text-decoration:none;font-size:.92rem;font-weight:600;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px}
+nav.tabs a:hover{color:var(--blue);border-bottom-color:var(--blue)}
+main{max-width:960px;margin:0 auto;padding:12px 16px 60px}
+.intro{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:4px;padding:16px 20px;margin:24px 0 8px}
+.intro p{margin:0 0 6px}.intro p:last-child{margin:0}
+.sec{margin-top:40px}
+.sh h2{font-family:var(--serif);font-size:1.6rem;margin:0 0 4px;color:var(--navy)}
+:root[data-theme="dark"] .sh h2{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .sh h2{color:#fff}}
+.sh p{margin:0 0 6px;color:var(--muted);max-width:70ch}
+.grp{font-size:1.02rem;margin:26px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--blue);color:var(--blue);display:inline-block}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:4px;margin:0 0 14px;overflow:hidden}
+.qh{display:flex;align-items:center;gap:12px;background:var(--blue-soft);border-bottom:2px dashed var(--line);padding:0 14px 0 0}
+.qn{background:var(--navy);color:#fff;font-weight:700;min-width:46px;align-self:stretch;display:flex;align-items:center;justify-content:center;padding:10px 4px;font-size:1rem}
+.qh h4{margin:0;font-size:1.02rem;flex:1;padding:10px 0;line-height:1.3}
+.chip{font-size:.78rem;color:var(--blue);border:1px solid var(--blue);border-radius:99px;padding:1px 10px;white-space:nowrap;font-weight:600}
+.qb{padding:14px 18px 16px}
+.adv{margin:0 0 12px;max-width:72ch}
+.ex{border:1px solid var(--line);border-radius:4px;padding:12px 16px;background:var(--bg)}
+.exq{font-family:var(--serif);font-size:1.03rem;line-height:1.65;margin:0 0 8px}
+.ch{list-style:none;padding:0;margin:10px 0 4px;display:grid;gap:6px}
+.ch li{display:flex;align-items:center;gap:10px;border:1.5px solid var(--ink);border-radius:6px;padding:6px 12px;background:var(--surface);font-family:var(--serif)}
+.bub{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink);display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:.8rem;font-weight:700;flex:none}
+details summary{cursor:pointer;color:var(--blue);font-weight:600;font-size:.92rem;padding:4px 0;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"\25B8  ";}
+details[open] summary::before{content:"\25BE  ";}
+summary:focus-visible,#toggle:focus-visible,nav.tabs a:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.ans{margin-top:6px;background:var(--good-soft);border-left:4px solid var(--good);padding:10px 14px;border-radius:0 4px 4px 0;font-size:.97rem}
+.timeline{display:flex;gap:4px;margin:14px 0 18px;border-radius:4px;overflow:hidden}
+.seg{padding:12px 14px;color:#fff;display:flex;flex-direction:column;gap:2px;min-width:0}
+.seg b{font-size:1rem}.seg span{font-size:.9rem;opacity:.95}.seg small{font-size:.8rem;opacity:.9;line-height:1.3}
+.s1{background:#2e7d5b}.s2{background:#0a5fb4}.s3{background:#0b2a4a}
+@media (max-width:620px){.timeline{flex-direction:column}.seg{flex:none!important}}
+.sheet{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin-top:12px}
+.sc{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:4px;padding:10px 16px 12px}
+.sc h4{margin:0 0 6px;color:var(--blue)}
+.sc ul{margin:0;padding-left:18px}.sc li{margin:3px 0;font-size:.93rem}
+footer{max-width:960px;margin:0 auto;padding:0 20px 40px;color:var(--muted);font-size:.85rem}
+@media print{nav.tabs,#toggle{display:none}.q{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div>
+    <h1>Digital SAT Math: Traps and Time-Savers</h1>
+    <p>The mistakes most students repeat, and the shortcuts that fix them.</p>
+    <div class="meta"><span>2 modules</span><span>22 questions each</span><span>35 minutes each</span><span>Desmos built in</span></div>
+  </div>
+  <button id="toggle" type="button">Show all answers</button>
+</div></header>
+<nav class="tabs" aria-label="Guide sections"><div><a href="#traps">Traps</a><a href="#desmos">Desmos</a><a href="#nodesmos">No calculator</a><a href="#pacing">Pacing</a><a href="#tasks">Question types</a><a href="#cheat">Cheat sheet</a></div></nav>
+<main>
+<div class="intro"><p><b>How to use this guide.</b> Each numbered card gives one piece of advice and one example question. Try the question first, then open the answer.</p>
+<p>Start with the traps, learn the Desmos moves, then use the pacing section to plan your modules.</p></div>
+<section id="traps" class="sec"><div class="sh"><h2>Traps almost everyone falls into</h2><p>These are the specific mistakes that cost the most points. Each one has a short question so you can see the trap happen.</p></div><h3 class="grp">Reading and setup</h3><article class="q">
+  <header class="qh"><span class="qn">1</span><h4>Answering for the wrong quantity</h4><span class="chip">Setup</span></header>
+  <div class="qb">
+    <p class="adv">The question asks for 6x + 2, or y, or x − 2, and you hand back x. Underline what is being asked before you touch the algebra.</p>
+    <div class="ex">
+      <p class="exq">If 3x + 1 = 13, what is the value of 6x + 2?<ol class="ch"><li><span class="bub">A</span><span>4</span></li><li><span class="bub">B</span><span>13</span></li><li><span class="bub">C</span><span>26</span></li><li><span class="bub">D</span><span>27</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>C (26).</b> Solving gives x = 4, which is answer A, the trap. But 6x + 2 = 2(3x + 1) = 2 · 13 = 26, with no solving needed.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">2</span><h4>Unit conversions</h4><span class="chip">Setup</span></header>
+  <div class="qb">
+    <p class="adv">Area and volume conversions square and cube the length factor. 1 yd² = 9 ft², not 3 ft².</p>
+    <div class="ex">
+      <p class="exq">A floor is 12 ft by 15 ft. Carpet is sold by the square yard. How many square yards are needed?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>20.</b> Area = 180 ft², and 180 ÷ 9 = 20. Dividing by 3 gives 60, the trap.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">3</span><h4>Must be vs. could be</h4><span class="chip">Setup</span></header>
+  <div class="qb">
+    <p class="adv">"Must be true" needs to hold for every allowed value. One counterexample kills a choice.</p>
+    <div class="ex">
+      <p class="exq">n is a positive multiple of 6. Which of the following must be true?<ol class="ch"><li><span class="bub">A</span><span>n is a multiple of 4</span></li><li><span class="bub">B</span><span>n is a multiple of 3</span></li><li><span class="bub">C</span><span>n is a multiple of 9</span></li><li><span class="bub">D</span><span>n is a multiple of 12</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B.</b> n = 6 is a multiple of 3 but not of 4, 9, or 12. Those choices could be true but are not guaranteed.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">4</span><h4>Ignoring the real-world context</h4><span class="chip">Setup</span></header>
+  <div class="qb">
+    <p class="adv">Check whether the answer has to be a whole number, positive, or under a limit. The math result may not be the answer.</p>
+    <div class="ex">
+      <p class="exq">Tickets cost $8 each. What is the maximum number of tickets that can be bought with $100?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>12.</b> 100 ÷ 8 = 12.5, and you cannot buy half a ticket. Rounding up to 13 would cost $104.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Algebra</h3><article class="q">
+  <header class="qh"><span class="qn">5</span><h4>Distributing a negative sign</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">A minus in front of parentheses flips every term inside. Write the parentheses out; do not do it in your head.</p>
+    <div class="ex">
+      <p class="exq">Which expression is equivalent to 7 − (3x − 2)?<ol class="ch"><li><span class="bub">A</span><span>5 − 3x</span></li><li><span class="bub">B</span><span>9 − 3x</span></li><li><span class="bub">C</span><span>5 + 3x</span></li><li><span class="bub">D</span><span>9 + 3x</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B.</b> 7 − 3x + 2 = 9 − 3x. Forgetting to flip the −2 gives A.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">6</span><h4>No solution or infinitely many</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">Do not solve. Compare coefficients. Same slope with a different constant means no solution. Everything matching means infinitely many.</p>
+    <div class="ex">
+      <p class="exq">3(x + 2) = 3x + k has infinitely many solutions. What is k?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>6.</b> The left side expands to 3x + 6. For the two sides to be identical, k = 6. If k were any other value, there would be no solution.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">7</span><h4>Flipping the inequality</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">Multiplying or dividing by a negative reverses the sign. Test one value from your answer at the end.</p>
+    <div class="ex">
+      <p class="exq">Which is the solution to −2x + 5 &gt; 11?<ol class="ch"><li><span class="bub">A</span><span>x &gt; −3</span></li><li><span class="bub">B</span><span>x &lt; −3</span></li><li><span class="bub">C</span><span>x &gt; 3</span></li><li><span class="bub">D</span><span>x &lt; 3</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B.</b> −2x &gt; 6 and dividing by −2 flips the sign: x &lt; −3. Check x = −4: 8 + 5 = 13 &gt; 11 ✓.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">8</span><h4>Extraneous solutions</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">Squaring both sides can create answers that do not work. Plug every result back into the original equation.</p>
+    <div class="ex">
+      <p class="exq">What is the solution to √(x + 6) = x?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>3.</b> Squaring gives x² − x − 6 = 0, so x = 3 or x = −2. Check x = −2: √4 = 2, not −2, so it is extraneous.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">9</span><h4>Absolute value has two cases</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">|expression| = c splits into expression = c and expression = −c.</p>
+    <div class="ex">
+      <p class="exq">What is the sum of the solutions to |2x − 3| = 7?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>3.</b> 2x − 3 = 7 gives x = 5, and 2x − 3 = −7 gives x = −2. Sum: 5 + (−2) = 3.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">10</span><h4>Squaring a binomial</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">(a + b)² is a² + 2ab + b². The middle term is not optional.</p>
+    <div class="ex">
+      <p class="exq">Which is equivalent to (x + 3)²?<ol class="ch"><li><span class="bub">A</span><span>x² + 9</span></li><li><span class="bub">B</span><span>x² + 6x + 9</span></li><li><span class="bub">C</span><span>x² + 3x + 9</span></li><li><span class="bub">D</span><span>2x + 6</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B.</b> Test x = 1: (1 + 3)² = 16, and B gives 1 + 6 + 9 = 16. Choice A gives 10.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Percents and exponentials</h3><article class="q">
+  <header class="qh"><span class="qn">11</span><h4>Successive percent changes</h4><span class="chip">Percents</span></header>
+  <div class="qb">
+    <p class="adv">Percent changes multiply; they do not add. Use factors: +20% is × 1.2, −20% is × 0.8.</p>
+    <div class="ex">
+      <p class="exq">A $100 item goes up 20%, then the new price goes down 20%. What is the final price?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>$96.</b> 100 × 1.2 × 0.8 = 96, a net 4% decrease, not 0%.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">12</span><h4>Percent vs. percentage points</h4><span class="chip">Percents</span></header>
+  <div class="qb">
+    <p class="adv">A change in a percentage is measured in points. The percent change compares to the starting value.</p>
+    <div class="ex">
+      <p class="exq">A rate rises from 40% to 50%. What is the percent increase?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>25%.</b> The rise is 10 percentage points, and 10 ÷ 40 = 0.25.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">13</span><h4>Growth factor vs. rate</h4><span class="chip">Percents</span></header>
+  <div class="qb">
+    <p class="adv">Decreasing by 20% each period means multiplying by 0.8, not 0.2. Factor = 1 ± rate.</p>
+    <div class="ex">
+      <p class="exq">A car worth $20,000 loses 20% of its value each year. Which model gives its value V after t years?<ol class="ch"><li><span class="bub">A</span><span>V = 20,000(0.2)<sup>t</sup></span></li><li><span class="bub">B</span><span>V = 20,000(0.8)<sup>t</sup></span></li><li><span class="bub">C</span><span>V = 20,000 − 0.2t</span></li><li><span class="bub">D</span><span>V = 20,000(1.2)<sup>t</sup></span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B.</b> Each year keeps 80% of the value. After 2 years: 20,000 × 0.8² = $12,800.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">14</span><h4>Time in the exponent</h4><span class="chip">Percents</span></header>
+  <div class="qb">
+    <p class="adv">"Every k units" puts t/k in the exponent, not t.</p>
+    <div class="ex">
+      <p class="exq">A population of 500 doubles every 3 years. Which gives its size after t years?<ol class="ch"><li><span class="bub">A</span><span>500(2)<sup>t</sup></span></li><li><span class="bub">B</span><span>500(2)<sup>3t</sup></span></li><li><span class="bub">C</span><span>500(2)<sup>t/3</sup></span></li><li><span class="bub">D</span><span>500(3)<sup>t/2</sup></span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>C.</b> At t = 9: 500 × 2³ = 4,000. Choice A would give 500 × 512.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Quadratics and functions</h3><article class="q">
+  <header class="qh"><span class="qn">15</span><h4>Pick the form the question needs</h4><span class="chip">Functions</span></header>
+  <div class="qb">
+    <p class="adv">Factored form shows zeros, vertex form shows the vertex, standard form shows the y-intercept. Do not convert if the form already answers the question.</p>
+    <div class="ex">
+      <p class="exq">What is the minimum value of y = (x − 2)(x − 6)?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>−4.</b> The zeros are 2 and 6, so the vertex is at their midpoint, x = 4. Then y = (4 − 2)(4 − 6) = −4.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">16</span><h4>Direction of horizontal shifts</h4><span class="chip">Functions</span></header>
+  <div class="qb">
+    <p class="adv">f(x + 3) moves left 3, not right. Inside changes act opposite to how they look.</p>
+    <div class="ex">
+      <p class="exq">The graph of f has its vertex at (2, 1). Where is the vertex of g(x) = f(x + 3)?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>(−1, 1).</b> Shifting left by 3 moves the x-coordinate from 2 to −1.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">17</span><h4>Reading a circle equation</h4><span class="chip">Functions</span></header>
+  <div class="qb">
+    <p class="adv">In (x − h)² + (y − k)² = r², the center is (h, k) and the right side is r², not r. Watch the sign flip.</p>
+    <div class="ex">
+      <p class="exq">What are the center and radius of (x − 3)² + (y + 2)² = 25?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Center (3, −2), radius 5.</b> y + 2 means k = −2. And 25 = r², so r = 5.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">18</span><h4>Discriminant and number of solutions</h4><span class="chip">Functions</span></header>
+  <div class="qb">
+    <p class="adv">b² − 4ac &gt; 0 gives two real solutions, = 0 gives one, &lt; 0 gives none.</p>
+    <div class="ex">
+      <p class="exq">For which values of k does x² + 6x + k = 0 have no real solutions?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>k &gt; 9.</b> The discriminant is 36 − 4k, and 36 − 4k &lt; 0 gives k &gt; 9.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Geometry and trigonometry</h3><article class="q">
+  <header class="qh"><span class="qn">19</span><h4>Scaling area and volume</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">If lengths scale by k, area scales by k² and volume by k³.</p>
+    <div class="ex">
+      <p class="exq">A cone has volume 10 cm³. A similar cone has every dimension tripled. What is its volume?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>270 cm³.</b> 10 × 3³ = 270. Multiplying by 3 gives 30, the trap.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">20</span><h4>Radians vs. degrees</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">Check the Desmos angle mode (wrench icon) before every trig calculation. The wrong mode gives a confident wrong answer.</p>
+    <div class="ex">
+      <p class="exq">You type sin(30) in Desmos and get −0.988. What happened?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Radian mode.</b> In degree mode, sin(30) = 0.5. Switch the mode in the wrench menu.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">21</span><h4>sin x = cos(90° − x)</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">Sine and cosine of complementary angles are equal. Look for this whenever both functions appear.</p>
+    <div class="ex">
+      <p class="exq">If sin(x°) = 4/5, what is cos(90° − x°)?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>4/5.</b> cos(90° − x°) equals sin(x°) by the complementary-angle relationship.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">22</span><h4>Matching similar triangles</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">Match corresponding sides by vertex order. In △ABC ~ △DEF, AB pairs with DE, BC with EF.</p>
+    <div class="ex">
+      <p class="exq">△ABC ~ △DEF. AB = 6, DE = 9, and BC = 8. What is EF?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>12.</b> The scale factor is 9/6 = 1.5, and 8 × 1.5 = 12.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Data and statistics</h3><article class="q">
+  <header class="qh"><span class="qn">23</span><h4>Conditional probability denominators</h4><span class="chip">Data</span></header>
+  <div class="qb">
+    <p class="adv">"Given that" names the group you are inside. That row or column total is your denominator, not the grand total.</p>
+    <div class="ex">
+      <p class="exq">Of 100 students, 40 are juniors. 25 of the juniors play a sport. If a junior is chosen at random, what is the probability the student plays a sport?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>25/40 = 5/8.</b> The denominator is the 40 juniors, not the 100 students.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">24</span><h4>Causation and generalization</h4><span class="chip">Data</span></header>
+  <div class="qb">
+    <p class="adv">Random sampling lets you generalize to that population. Random assignment lets you claim cause and effect. Check for each separately.</p>
+    <div class="ex">
+      <p class="exq">500 members were randomly chosen from a city's gyms. Sauna users slept longer on average. What conclusion is supported?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Sauna users among that city's gym members tend to sleep longer.</b> Members were sampled randomly, so generalizing to them is fine. Nobody was randomly assigned to use the sauna, so you cannot say it causes longer sleep.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">25</span><h4>Margin of error</h4><span class="chip">Data</span></header>
+  <div class="qb">
+    <p class="adv">A margin of error gives a plausible range, not a guarantee.</p>
+    <div class="ex">
+      <p class="exq">A poll reports 52% support with a margin of error of ±3%. What is the plausible range for true support?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>49% to 55%.</b> It is the most plausible range, but the true value is not guaranteed to lie inside it.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">26</span><h4>Outliers and the median</h4><span class="chip">Data</span></header>
+  <div class="qb">
+    <p class="adv">Extreme values pull the mean and the standard deviation a lot. The median barely moves.</p>
+    <div class="ex">
+      <p class="exq">For 4, 5, 6, 7, 8 the mean and median are both 6. What happens if 8 is changed to 80?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>The mean becomes 20.4; the median stays 6.</b> Only the middle value counts for the median.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">27</span><h4>Weighted averages</h4><span class="chip">Data</span></header>
+  <div class="qb">
+    <p class="adv">Combine groups by their sizes. Never average two group means directly.</p>
+    <div class="ex">
+      <p class="exq">Class A has 10 students with a mean of 90. Class B has 30 students with a mean of 70. What is the combined mean?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>75.</b> (10·90 + 30·70) ÷ 40 = 3,000 ÷ 40 = 75. Averaging 90 and 70 gives 80, the trap.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">28</span><h4>Interpreting a line of best fit</h4><span class="chip">Data</span></header>
+  <div class="qb">
+    <p class="adv">Slope means change in y per one unit of x. Intercept means predicted y at x = 0. Say both with units.</p>
+    <div class="ex">
+      <p class="exq">A model is score = 2.5h + 40, where h is hours studied. Interpret 2.5 and predict the score for h = 4.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>2.5</b> is the predicted score increase per additional hour studied. At h = 4, the predicted score is 2.5(4) + 40 = <b>50</b>.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Student-produced responses</h3><article class="q">
+  <header class="qh"><span class="qn">29</span><h4>Rounding</h4><span class="chip">Grid-in</span></header>
+  <div class="qb">
+    <p class="adv">If the question does not ask you to round, give the exact value. A fraction avoids rounding errors entirely.</p>
+    <div class="ex">
+      <p class="exq">The answer works out to 0.666666… How should you enter it?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>2/3.</b> The exact fraction is accepted. Entering 0.66 would be marked wrong.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">30</span><h4>No units or percent signs</h4><span class="chip">Grid-in</span></header>
+  <div class="qb">
+    <p class="adv">The answer box takes numbers only. Enter 25, not 25% or 25 ft.</p>
+    <div class="ex">
+      <p class="exq">You find that the answer is "25 percent." What do you type?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>25.</b> The question defines the unit, so only the number goes in the box.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">31</span><h4>Negative signs</h4><span class="chip">Grid-in</span></header>
+  <div class="qb">
+    <p class="adv">Read your answer once more for the sign before you submit.</p>
+    <div class="ex">
+      <p class="exq">x + 9 = 4. Which entry is correct?<ol class="ch"><li><span class="bub">A</span><span>5</span></li><li><span class="bub">B</span><span>−5</span></li><li><span class="bub">C</span><span>−13</span></li><li><span class="bub">D</span><span>13</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B (−5).</b> The check is quick: −5 + 9 = 4.</div></details>
+    </div>
+  </div>
+</article></section><section id="desmos" class="sec"><div class="sh"><h2>Use Desmos for everything it can do</h2><p>The built-in calculator is the biggest time-saver on the test. These are the moves worth practicing until they are automatic.</p></div><h3 class="grp">Graphing shortcuts</h3><article class="q">
+  <header class="qh"><span class="qn">32</span><h4>Solve a system by graphing</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Type both equations. Tap the gray dot where the lines cross to read the solution.</p>
+    <div class="ex">
+      <p class="exq">Solve y = 2x + 1 and y = −x + 7.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>(2, 5).</b> Type both lines and tap the intersection. Check: 2(2) + 1 = 5 and −2 + 7 = 5 ✓.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">33</span><h4>Solve an equation with two graphs</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Graph the left side and the right side as two separate curves. Each x-value where they cross is a solution.</p>
+    <div class="ex">
+      <p class="exq">Solve x² − 3 = 2x.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>x = −1 and x = 3.</b> Enter y = x² − 3 and y = 2x, then read the x-coordinates of the two intersections.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">34</span><h4>Zeros and vertices in one click</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Type the function and tap the gray dots. You get zeros, vertex, and y-intercept without any algebra.</p>
+    <div class="ex">
+      <p class="exq">What is the vertex of y = x² − 4x − 5?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>(2, −9).</b> Graph it and tap the minimum. The zeros show up as −1 and 5 as well.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">35</span><h4>Equivalent-expression questions</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Type the original expression, then each choice. The choice whose graph lies exactly on top of it is equivalent. Or type original − choice and look for a flat line at 0.</p>
+    <div class="ex">
+      <p class="exq">Which is equivalent to (x + 2)² − (x − 1)²?<ol class="ch"><li><span class="bub">A</span><span>6x + 3</span></li><li><span class="bub">B</span><span>6x + 5</span></li><li><span class="bub">C</span><span>2x + 3</span></li><li><span class="bub">D</span><span>x² + 3</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>A.</b> The original graphs as a straight line, y = 6x + 3. Only choice A overlaps it.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">36</span><h4>Test points in inequality systems</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Graph the inequalities, then type each answer choice as a point. The one inside the overlap is the solution.</p>
+    <div class="ex">
+      <p class="exq">Which point satisfies y &gt; x + 1 and y &lt; −x + 5?<ol class="ch"><li><span class="bub">A</span><span>(1, 3)</span></li><li><span class="bub">B</span><span>(3, 5)</span></li><li><span class="bub">C</span><span>(0, 0)</span></li><li><span class="bub">D</span><span>(4, 1)</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>A.</b> Type (1, 3): 3 &gt; 2 ✓ and 3 &lt; 4 ✓. Point (3, 5) fails the second inequality since 5 &lt; 2 is false.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Sliders, regression, and statistics</h3><article class="q">
+  <header class="qh"><span class="qn">37</span><h4>Use sliders for "for what value of k"</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Type the equation with k in it and click the slider prompt. Drag k until the condition happens.</p>
+    <div class="ex">
+      <p class="exq">For what value of k does the system y = 2x + 3 and y = kx + 7 have no solution?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>2.</b> Drag k until the lines become parallel. That happens at k = 2, since the slopes match but the intercepts differ.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">38</span><h4>Regression from a table</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Enter the data in a table. Type y₁ ~ mx₁ + b for a line or y₁ ~ a·b^x₁ for an exponential, and read the fitted values.</p>
+    <div class="ex">
+      <p class="exq">Points (1, 3), (2, 5), (3, 7). Find the line through them.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>y = 2x + 1.</b> Desmos shows m = 2 and b = 1. For (0, 5), (1, 10), (2, 20) the exponential fit gives a = 5, b = 2.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">39</span><h4>Mean, median, and standard deviation</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Use mean([…]), median([…]), and stdev([…]). Do not compute them by hand.</p>
+    <div class="ex">
+      <p class="exq">Find the mean and median of 4, 8, 15, 16, 23, 42.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Mean 18, median 15.5.</b> Type mean([4,8,15,16,23,42]) and median([4,8,15,16,23,42]).</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">40</span><h4>Type long arithmetic straight in</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Compound-interest and exponent arithmetic goes right into an expression line.</p>
+    <div class="ex">
+      <p class="exq">What is 3000(1.04)⁵ to the nearest cent?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>$3,649.96.</b> Type 3000(1.04)^5 in one line.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">41</span><h4>Restrict a domain</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">Add {t ≥ 0} after an equation to draw only the meaningful part of a model.</p>
+    <div class="ex">
+      <p class="exq">A ball's height is h = −16t² + 64t. Find its maximum height.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>64 ft.</b> Graph it with {t ≥ 0} and tap the peak at t = 2.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">42</span><h4>Graph any circle, even unsimplified</h4><span class="chip">Desmos</span></header>
+  <div class="qb">
+    <p class="adv">You do not have to complete the square. Type the equation as given and read the center off the graph.</p>
+    <div class="ex">
+      <p class="exq">Find the center and radius of x² + y² − 6x + 4y = 12.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Center (3, −2), radius 5.</b> Desmos draws it directly. By hand: (x − 3)² + (y + 2)² = 12 + 13 = 25.</div></details>
+    </div>
+  </div>
+</article></section><section id="nodesmos" class="sec"><div class="sh"><h2>Speed moves that need no calculator</h2><p>Some questions are faster without opening Desmos. These work on paper or in your head.</p></div><h3 class="grp">Answer-choice strategies</h3><article class="q">
+  <header class="qh"><span class="qn">43</span><h4>Backsolve</h4><span class="chip">Strategy</span></header>
+  <div class="qb">
+    <p class="adv">With numeric choices, plug in B or C first. Too big or too small tells you which way to go.</p>
+    <div class="ex">
+      <p class="exq">What is the positive solution to 2x² − 3x = 20?<ol class="ch"><li><span class="bub">A</span><span>3</span></li><li><span class="bub">B</span><span>4</span></li><li><span class="bub">C</span><span>5</span></li><li><span class="bub">D</span><span>6</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B (4).</b> Try C: 2(25) − 15 = 35, too big, so go lower. Try B: 32 − 12 = 20 ✓.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">44</span><h4>Pick numbers</h4><span class="chip">Strategy</span></header>
+  <div class="qb">
+    <p class="adv">For variable-heavy or percent questions, choose an easy value (c = 100) and test each choice.</p>
+    <div class="ex">
+      <p class="exq">A store marks up cost c by 40%, then sells at 25% off the marked price. What is the selling price?<ol class="ch"><li><span class="bub">A</span><span>1.05c</span></li><li><span class="bub">B</span><span>1.15c</span></li><li><span class="bub">C</span><span>1.40c</span></li><li><span class="bub">D</span><span>0.65c</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>A.</b> Let c = 100. Marked up: 140. Then 25% off: 140 × 0.75 = 105 = 1.05c.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">45</span><h4>Read the choices first</h4><span class="chip">Strategy</span></header>
+  <div class="qb">
+    <p class="adv">The choices show the form the answer must take. That tells you what to solve for.</p>
+    <div class="ex">
+      <p class="exq">Which equation represents the line through (0, 4) and (2, 0)?<ol class="ch"><li><span class="bub">A</span><span>y = −2x + 4</span></li><li><span class="bub">B</span><span>y = 2x + 4</span></li><li><span class="bub">C</span><span>y = −½x + 4</span></li><li><span class="bub">D</span><span>y = ½x + 4</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>A.</b> Every choice has intercept 4, so only the slope matters: (0 − 4)/(2 − 0) = −2.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">46</span><h4>Estimate and eliminate</h4><span class="chip">Strategy</span></header>
+  <div class="qb">
+    <p class="adv">Round to easy numbers to cut choices before you calculate.</p>
+    <div class="ex">
+      <p class="exq">About what is 19.8% of 4,010?<ol class="ch"><li><span class="bub">A</span><span>79.4</span></li><li><span class="bub">B</span><span>794</span></li><li><span class="bub">C</span><span>7,940</span></li><li><span class="bub">D</span><span>79,400</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B.</b> 20% of 4,000 = 800, so only 794 is close.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">47</span><h4>Do not simplify unless needed</h4><span class="chip">Strategy</span></header>
+  <div class="qb">
+    <p class="adv">If the equation is already factored, the answers are already visible.</p>
+    <div class="ex">
+      <p class="exq">Solve (x − 2)(x + 5) = 0.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>x = 2 and x = −5.</b> Expanding first would only add steps.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Formulas and facts to have memorized</h3><article class="q">
+  <header class="qh"><span class="qn">48</span><h4>Compare coefficients</h4><span class="chip">Shortcut</span></header>
+  <div class="qb">
+    <p class="adv">For "no solution" systems, set the coefficient ratios equal, then confirm the constants do not match.</p>
+    <div class="ex">
+      <p class="exq">6x + ky = 12 and 3x + 4y = 5 have no solution. What is k?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>8.</b> 6/3 = k/4, so k = 8. The constants fail the match: 12/5 ≠ 2 ✓.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">49</span><h4>Vertex, sum, product, and remainder</h4><span class="chip">Shortcut</span></header>
+  <div class="qb">
+    <p class="adv">Vertex x = −b/2a. Roots sum to −b/a and multiply to c/a. The remainder of f(x) ÷ (x − a) is f(a).</p>
+    <div class="ex">
+      <p class="exq">What is the remainder when x³ − 2x + 1 is divided by x − 2?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>5.</b> f(2) = 8 − 4 + 1 = 5.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">50</span><h4>Memorize squares, triples, and powers of i</h4><span class="chip">Shortcut</span></header>
+  <div class="qb">
+    <p class="adv">Squares up to 20, the triples 3-4-5, 5-12-13, 8-15-17, 7-24-25, and the four-step cycle of i.</p>
+    <div class="ex">
+      <p class="exq">A right triangle has legs 10 and 24. What is the hypotenuse? And what is i<sup>43</sup>?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>26, and −i.</b> 10–24–26 is 5–12–13 doubled. For i⁴³, 43 leaves remainder 3 when divided by 4, and i³ = −i.</div></details>
+    </div>
+  </div>
+</article></section><section id="pacing" class="sec"><div class="sh"><h2>Pacing and test-day habits</h2><p>Each module has 22 questions in 35 minutes, about 1:35 per question. Questions rise in difficulty, so easy ones fund the hard ones.</p></div>
+<div class="timeline" role="img" aria-label="Suggested time by question: questions 1 to 8 about 8 minutes, 9 to 16 about 12 minutes, 17 to 22 about 15 minutes">
+  <div class="seg s1" style="flex:8"><b>Q1–8</b><span>about 8 min</span><small>Easy. Work fast, about 1 min each.</small></div>
+  <div class="seg s2" style="flex:12"><b>Q9–16</b><span>about 12 min</span><small>Medium. Around 1:30 each.</small></div>
+  <div class="seg s3" style="flex:15"><b>Q17–22</b><span>about 15 min</span><small>Hard. Up to 2:30 each.</small></div>
+</div>
+<article class="q">
+  <header class="qh"><span class="qn">51</span><h4>Bank time early</h4><span class="chip">Pacing</span></header>
+  <div class="qb">
+    <p class="adv">Finish the first 8 questions in about 8 minutes. That leaves the hardest ones roughly 2 minutes or more each.</p>
+    <div class="ex">
+      <p class="exq">You finish Q1–8 in 8 minutes instead of 12. How much extra time did you bank?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>4 minutes</b>, which is enough for two extra hard questions.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">52</span><h4>Halfway checkpoint</h4><span class="chip">Pacing</span></header>
+  <div class="qb">
+    <p class="adv">Aim to have at least 11 questions done by 17:30. Ahead of that is fine; behind means speed up or skip.</p>
+    <div class="ex">
+      <p class="exq">At 17:30 you are on question 9. What should you do?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Skip anything that stalls you</b> and move faster on the next few. You are two questions behind.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">53</span><h4>Skip and flag after 90 seconds</h4><span class="chip">Pacing</span></header>
+  <div class="qb">
+    <p class="adv">If you have no clear path after about 90 seconds, flag it and move on. Returning fresh often takes a fraction of the time.</p>
+    <div class="ex">
+      <p class="exq">You are 2 minutes into a question with no plan. What now?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Flag it, take your best guess, and move on.</b> Come back at the end.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">54</span><h4>Never leave a blank</h4><span class="chip">Pacing</span></header>
+  <div class="qb">
+    <p class="adv">There is no penalty for wrong answers. Always guess after eliminating what you can.</p>
+    <div class="ex">
+      <p class="exq">Time is nearly up and 2 questions are blank. What do you do?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Fill both in.</b> A guess has a chance of being right, a blank has none.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">55</span><h4>Module 1 matters most</h4><span class="chip">Pacing</span></header>
+  <div class="qb">
+    <p class="adv">Module 1 performance sets whether you get the harder Module 2. Be careful there, not rushed.</p>
+    <div class="ex">
+      <p class="exq">Which module deserves a slower, more careful pace?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Module 1.</b> A mistake there can lock you out of the higher-scoring Module 2.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">56</span><h4>Practice in Bluebook</h4><span class="chip">Practice</span></header>
+  <div class="qb">
+    <p class="adv">Do full modules in the official app so the timer and Desmos feel routine.</p>
+    <div class="ex">
+      <p class="exq">Why practice on Bluebook rather than paper?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>You train with the real Desmos, strike-through, and timer.</b> No surprises on test day.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">57</span><h4>Keep an error log</h4><span class="chip">Practice</span></header>
+  <div class="qb">
+    <p class="adv">Most people repeat the same 3–4 mistakes. Log each one with the rule that would have prevented it.</p>
+    <div class="ex">
+      <p class="exq">You lost a point by forgetting to flip an inequality. What goes in your log?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>"Q14: divided by −2, forgot to flip. Rule: circle any negative I divide by."</b></div></details>
+    </div>
+  </div>
+</article></section><section id="tasks" class="sec"><div class="sh"><h2>Tricks for specific question types</h2><p>Task-by-task moves for algebra, word problems, graphs, geometry, data, and the grid-in format.</p></div><h3 class="grp">Algebra</h3><article class="q">
+  <header class="qh"><span class="qn">58</span><h4>Ask for a combination? Add or subtract</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">If the question wants 2x + 3y and the system is nearby, add or subtract the equations first. Do not solve for x and y separately.</p>
+    <div class="ex">
+      <p class="exq">If 3x + 2y = 11 and x + 4y = 9, what is 2x + 3y?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>10.</b> Adding gives 4x + 6y = 20. Divide by 2: 2x + 3y = 10.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">59</span><h4>Ratios from one equation</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">To find x/y, divide the given equation. Do not solve for both.</p>
+    <div class="ex">
+      <p class="exq">If 3x = 5y and y ≠ 0, what is x/y?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>5/3.</b> Divide both sides by 3y.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">60</span><h4>Function value: solve the inside</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">Given f(a) = value, set the rule equal to that value. Do not rebuild the function.</p>
+    <div class="ex">
+      <p class="exq">f(x) = 3x − 7 and f(a) = 11. What is a?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>6.</b> 3a − 7 = 11, so a = 6.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">61</span><h4>Radical equations: backsolve</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">Plugging in the choices avoids extraneous roots automatically.</p>
+    <div class="ex">
+      <p class="exq">Which is a solution to √(2x + 8) = x?<ol class="ch"><li><span class="bub">A</span><span>−2</span></li><li><span class="bub">B</span><span>1</span></li><li><span class="bub">C</span><span>4</span></li><li><span class="bub">D</span><span>8</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>C (4).</b> √16 = 4 ✓. Choice A fails: √4 = 2, not −2.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">62</span><h4>Exactly one solution</h4><span class="chip">Algebra</span></header>
+  <div class="qb">
+    <p class="adv">One solution means the discriminant is 0, so b² = 4ac.</p>
+    <div class="ex">
+      <p class="exq">x² + bx + 16 = 0 has exactly one real solution. What is one possible value of b?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>8 (or −8).</b> b² = 4(1)(16) = 64.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Word problems</h3><article class="q">
+  <header class="qh"><span class="qn">63</span><h4>Read the last sentence first</h4><span class="chip">Word problem</span></header>
+  <div class="qb">
+    <p class="adv">Knowing what you are looking for makes the setup sentences easier to sort.</p>
+    <div class="ex">
+      <p class="exq">A tank holds 50 gal and empties 4 gal every minute. ... How many minutes until it holds 10 gal?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>10.</b> Set 50 − 4m = 10. Reading the question first tells you to solve for m.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">64</span><h4>"Per" is slope, "initial" is intercept</h4><span class="chip">Word problem</span></header>
+  <div class="qb">
+    <p class="adv">Words like per, each, and every point to the slope. Words like flat fee, starting, and initial point to the intercept.</p>
+    <div class="ex">
+      <p class="exq">A plumber charges $45 to visit plus $30 per hour. Write the cost C for h hours.</p>
+      <details><summary>Show answer</summary><div class="ans"><b>C = 30h + 45.</b> $30 per hour is the slope, and $45 is the starting amount.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">65</span><h4>Interpretation questions</h4><span class="chip">Word problem</span></header>
+  <div class="qb">
+    <p class="adv">The right answer names the units and the context. Cross out any choice that swaps slope and intercept.</p>
+    <div class="ex">
+      <p class="exq">In C = 30h + 45, what does the 30 mean?<ol class="ch"><li><span class="bub">A</span><span>The starting charge is $30</span></li><li><span class="bub">B</span><span>Each additional hour adds $30 to the cost</span></li><li><span class="bub">C</span><span>The plumber works 30 hours</span></li><li><span class="bub">D</span><span>The visit costs $75</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B.</b> 30 is the slope, the change in cost per additional hour.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">66</span><h4>Model selection</h4><span class="chip">Word problem</span></header>
+  <div class="qb">
+    <p class="adv">Test the first two or three table points in the choices. Two checks usually eliminate everything but one.</p>
+    <div class="ex">
+      <p class="exq">Table: (0, 50), (1, 60), (2, 72). Which model fits?<ol class="ch"><li><span class="bub">A</span><span>50 + 10x</span></li><li><span class="bub">B</span><span>50(1.2)<sup>x</sup></span></li><li><span class="bub">C</span><span>50 + 11x</span></li><li><span class="bub">D</span><span>50(1.1)<sup>x</sup></span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>B.</b> At x = 1: 60 ✓. At x = 2: 50 × 1.44 = 72 ✓. Choice A gives 70 at x = 2.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">67</span><h4>Average speed</h4><span class="chip">Word problem</span></header>
+  <div class="qb">
+    <p class="adv">Average speed is total distance divided by total time. Never average the speeds.</p>
+    <div class="ex">
+      <p class="exq">60 miles at 60 mph, then 60 miles at 30 mph. What is the average speed?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>40 mph.</b> Time is 1 + 2 = 3 hours, and 120 ÷ 3 = 40. Averaging 60 and 30 gives 45, the trap.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">68</span><h4>Ratios into parts</h4><span class="chip">Word problem</span></header>
+  <div class="qb">
+    <p class="adv">Add the ratio numbers, divide the total by that sum, then multiply.</p>
+    <div class="ex">
+      <p class="exq">Boys to girls is 3 : 5 in a group of 40. How many girls?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>25.</b> 3 + 5 = 8 parts, 40 ÷ 8 = 5 per part, and 5 × 5 = 25.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Graphs and functions</h3><article class="q">
+  <header class="qh"><span class="qn">69</span><h4>Check the axis scale</h4><span class="chip">Graphs</span></header>
+  <div class="qb">
+    <p class="adv">Gridlines are not always 1 unit apart. Read the labels on both axes before estimating.</p>
+    <div class="ex">
+      <p class="exq">A graph's gridlines are labeled 0, 5, 10, 15. A point sits on the third line. What is its value?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>10.</b> The lines go 0, 5, 10, so the third line reads 10. Counting by ones would give 3.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">70</span><h4>Crossings equal real solutions</h4><span class="chip">Graphs</span></header>
+  <div class="qb">
+    <p class="adv">The number of times a graph crosses the x-axis is the number of real solutions.</p>
+    <div class="ex">
+      <p class="exq">A parabola touches the x-axis at exactly one point. How many real solutions does its equation have?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>1.</b> Touching once means one real (repeated) solution.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">71</span><h4>Transformations</h4><span class="chip">Graphs</span></header>
+  <div class="qb">
+    <p class="adv">f(x) + k moves up, f(x + k) moves left, and −f(x) reflects over the x-axis.</p>
+    <div class="ex">
+      <p class="exq">If f(x) = x², where is the vertex of g(x) = −f(x) + 3, and which way does it open?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>(0, 3), opening down.</b> The negative reflects the parabola, and +3 lifts it.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">72</span><h4>Table y-intercept</h4><span class="chip">Graphs</span></header>
+  <div class="qb">
+    <p class="adv">If x = 0 is missing, extend the pattern backward.</p>
+    <div class="ex">
+      <p class="exq">x = 1, 2, 3 gives y = 7, 9, 11. What is y at x = 0?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>5.</b> y rises by 2 per step, so one step back from 7 is 5.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">73</span><h4>Composition: work inside out</h4><span class="chip">Graphs</span></header>
+  <div class="qb">
+    <p class="adv">With numbers given, evaluate the inner function first. No need to build the full formula.</p>
+    <div class="ex">
+      <p class="exq">f(x) = 2x + 1 and g(x) = x². What is f(g(3))?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>19.</b> g(3) = 9, then f(9) = 19.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">74</span><h4>Match a graph fast</h4><span class="chip">Graphs</span></header>
+  <div class="qb">
+    <p class="adv">Check only the y-intercept and the sign of the slope. That usually eliminates three choices.</p>
+    <div class="ex">
+      <p class="exq">Which graph shows y = −2x + 4?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>The line crossing the y-axis at 4 and sloping downward.</b> Two checks are enough.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Geometry and trigonometry</h3><article class="q">
+  <header class="qh"><span class="qn">75</span><h4>The reference sheet is on screen</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">Basic area and volume formulas are given. Spend your effort on using them quickly.</p>
+    <div class="ex">
+      <p class="exq">A cylinder has radius 3 and height 5. What is its volume?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>45π.</b> V = πr²h = π · 9 · 5.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">76</span><h4>Circle facts</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">An inscribed angle is half its central angle. Arc length is (θ/360°) · 2πr.</p>
+    <div class="ex">
+      <p class="exq">In a circle with radius 6, a central angle is 60°. What is the arc length?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>2π.</b> (60/360) · 2π · 6 = (1/6) · 12π = 2π.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">77</span><h4>Box diagonals</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">The space diagonal of a box is √(l² + w² + h²).</p>
+    <div class="ex">
+      <p class="exq">What is the diagonal of a 2 × 3 × 6 box?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>7.</b> √(4 + 9 + 36) = √49 = 7.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">78</span><h4>Similar right triangles share trig ratios</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">Read sin, cos, and tan from whichever triangle has easier numbers.</p>
+    <div class="ex">
+      <p class="exq">A 3–4–5 right triangle is enlarged to a 6–8–10 triangle. What is sin of the angle opposite the shorter leg?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>3/5.</b> The ratio is the same in both triangles.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">79</span><h4>Triangle inequality</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">The third side is between the difference and the sum of the other two.</p>
+    <div class="ex">
+      <p class="exq">Two sides of a triangle are 5 and 9. Which is a possible third side?<ol class="ch"><li><span class="bub">A</span><span>3</span></li><li><span class="bub">B</span><span>4</span></li><li><span class="bub">C</span><span>10</span></li><li><span class="bub">D</span><span>14</span></li></ol></p>
+      <details><summary>Show answer</summary><div class="ans"><b>C (10).</b> The third side must be greater than 4 and less than 14.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">80</span><h4>Do not trust the diagram</h4><span class="chip">Geometry</span></header>
+  <div class="qb">
+    <p class="adv">Figures may not be drawn to scale. Use given numbers and relationships only.</p>
+    <div class="ex">
+      <p class="exq">A triangle looks equilateral but two angles are labeled 50° and 70°. What is the third angle?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>60°.</b> 180 − 50 − 70 = 60. Measuring by eye would mislead you.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Data and statistics</h3><article class="q">
+  <header class="qh"><span class="qn">81</span><h4>Standard deviation by spread</h4><span class="chip">Data</span></header>
+  <div class="qb">
+    <p class="adv">You almost never calculate it. Ask which set has values farther from the center.</p>
+    <div class="ex">
+      <p class="exq">Set A: 8, 9, 10, 11, 12. Set B: 2, 6, 10, 14, 18. Both have mean 10. Which has the larger standard deviation?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Set B.</b> Its values sit much farther from 10.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">82</span><h4>Adding a value equal to the mean</h4><span class="chip">Data</span></header>
+  <div class="qb">
+    <p class="adv">The mean stays the same, and the standard deviation goes down.</p>
+    <div class="ex">
+      <p class="exq">For 2, 4, 6, 8, 10 (mean 6), a new value 6 is added. What happens to the mean and standard deviation?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Mean stays 6; standard deviation decreases.</b> The new point adds no spread.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Grid-in specifics</h3><article class="q">
+  <header class="qh"><span class="qn">83</span><h4>Fractions are accepted</h4><span class="chip">Grid-in</span></header>
+  <div class="qb">
+    <p class="adv">Enter a fraction instead of a rounded decimal.</p>
+    <div class="ex">
+      <p class="exq">The exact answer is 7/12. What can you type?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>7/12.</b> Or .5833. The fraction is exact and safe.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">84</span><h4>Character limits</h4><span class="chip">Grid-in</span></header>
+  <div class="qb">
+    <p class="adv">Positive answers fit 5 characters, negative answers 6. If a decimal will not fit, use a fraction or truncate correctly.</p>
+    <div class="ex">
+      <p class="exq">The answer is −0.66666… Which entry works?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>−2/3.</b> It has 4 characters, so it fits.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">85</span><h4>Multiple valid answers</h4><span class="chip">Grid-in</span></header>
+  <div class="qb">
+    <p class="adv">If more than one value is correct, enter any one of them.</p>
+    <div class="ex">
+      <p class="exq">x² − 5x + 6 = 0. What can you enter?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>2 or 3.</b> Either is accepted.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">86</span><h4>Sanity-check the answer</h4><span class="chip">Grid-in</span></header>
+  <div class="qb">
+    <p class="adv">Ask whether the result makes sense: lengths are not negative, and probabilities are at most 1.</p>
+    <div class="ex">
+      <p class="exq">You calculate a probability of 1.4. What now?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Recheck.</b> A probability cannot exceed 1, so something went wrong.</div></details>
+    </div>
+  </div>
+</article><h3 class="grp">Habits that save seconds</h3><article class="q">
+  <header class="qh"><span class="qn">87</span><h4>Use the strike-through tool</h4><span class="chip">Habit</span></header>
+  <div class="qb">
+    <p class="adv">Cross out eliminated choices in Bluebook so you never reconsider them.</p>
+    <div class="ex">
+      <p class="exq">You eliminate A and D on a four-choice question. What is your guess chance now?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>50%.</b> Two choices remain.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">88</span><h4>Write the setup, not just numbers</h4><span class="chip">Habit</span></header>
+  <div class="qb">
+    <p class="adv">A one-line equation on scratch paper prevents most careless errors and costs seconds.</p>
+    <div class="ex">
+      <p class="exq">"Twice a number, decreased by 5, is 13." What do you write?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>2n − 5 = 13.</b> Then n = 9.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">89</span><h4>Save intermediate results</h4><span class="chip">Habit</span></header>
+  <div class="qb">
+    <p class="adv">Write each computed value once, in the order you will need it, so you never recompute.</p>
+    <div class="ex">
+      <p class="exq">You need the area of a circle (r = 5) twice. What do you write down?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>25π.</b> Write it once and reuse it.</div></details>
+    </div>
+  </div>
+</article><article class="q">
+  <header class="qh"><span class="qn">90</span><h4>Jot progress on flagged questions</h4><span class="chip">Habit</span></header>
+  <div class="qb">
+    <p class="adv">Write your partial work next to the question number so you can resume fast.</p>
+    <div class="ex">
+      <p class="exq">You flag question 17 after finding x = 4. What do you note?</p>
+      <details><summary>Show answer</summary><div class="ans"><b>Q17: x = 4, still need y.</b> That saves a full restart.</div></details>
+    </div>
+  </div>
+</article></section><section id="cheat" class="sec"><div class="sh"><h2>One-page cheat sheet</h2><p>The reference points from this guide in one place.</p></div>
+<div class="sheet">
+<div class="sc"><h4>Algebra</h4><ul>
+<li>Negative in front of parentheses flips every term</li>
+<li>Dividing by a negative flips the inequality</li>
+<li>No solution: same slope, different constant</li>
+<li>Infinite solutions: everything matches</li>
+<li>Check radical and rational answers</li>
+<li>(a + b)² = a² + 2ab + b²</li></ul></div>
+<div class="sc"><h4>Quadratics</h4><ul>
+<li>Vertex x = −b/2a</li>
+<li>Sum of roots = −b/a, product = c/a</li>
+<li>Discriminant b² − 4ac: &gt;0 two, =0 one, &lt;0 none</li>
+<li>Circle: (x − h)² + (y − k)² = r²</li>
+<li>Remainder of f(x) ÷ (x − a) is f(a)</li></ul></div>
+<div class="sc"><h4>Percents and growth</h4><ul>
+<li>Factor = 1 ± rate</li>
+<li>Successive changes multiply</li>
+<li>Percent change = change ÷ original</li>
+<li>Doubles every k: 2<sup>t/k</sup></li></ul></div>
+<div class="sc"><h4>Geometry and trig</h4><ul>
+<li>Lengths × k: area × k², volume × k³</li>
+<li>sin x = cos(90° − x)</li>
+<li>Triples: 3-4-5, 5-12-13, 8-15-17, 7-24-25</li>
+<li>Box diagonal √(l² + w² + h²)</li>
+<li>Triangle inequality: |a − b| &lt; c &lt; a + b</li>
+<li>Arc length (θ/360°) · 2πr</li></ul></div>
+<div class="sc"><h4>Data</h4><ul>
+<li>&quot;Given that&quot; sets the denominator</li>
+<li>Random sample: generalize. Random assignment: cause</li>
+<li>Outliers move the mean, not the median</li>
+<li>Combine means by weighting group sizes</li>
+<li>Slope: change in y per 1 x</li></ul></div>
+<div class="sc"><h4>Grid-in and pacing</h4><ul>
+<li>No units, no % sign</li>
+<li>Fractions are accepted</li>
+<li>Positive up to 5 characters, negative up to 6</li>
+<li>Skip and flag after 90 seconds</li>
+<li>Never leave a blank</li></ul></div>
+</div></section>
+</main>
+<footer>Practice on the official Bluebook app to match the real test environment.</footer>
+<script>
+(function(){
+  var b=document.getElementById('toggle');
+  var open=false;
+  b.addEventListener('click',function(){
+    open=!open;
+    document.querySelectorAll('details').forEach(function(d){d.open=open;});
+    b.textContent=open?'Hide all answers':'Show all answers';
+  });
+})();
+</script>
+</body>
+</html>
